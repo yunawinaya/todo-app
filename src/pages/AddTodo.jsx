@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Form, Button, Container } from "react-bootstrap";
+import { TodoContext } from "../contexts/TodoContext";
+import { useNavigate } from "react-router-dom";
 
 export default function AddTodo() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [completed, setCompleted] = useState(false);
+  const setTodos = useContext(TodoContext).setTodos;
+  const todos = useContext(TodoContext).todos;
+  const navigate = useNavigate();
 
   return (
     <Container>
@@ -12,6 +17,11 @@ export default function AddTodo() {
       <Form
         onSubmit={function (event) {
           event.preventDefault();
+          setTodos([
+            ...todos,
+            { id: Date.now(), title, description, completed },
+          ]);
+          navigate("/");
         }}
       >
         <Form.Group className="mb-3" controlId="titleForm">
