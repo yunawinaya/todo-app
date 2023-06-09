@@ -32,7 +32,7 @@ export default function AddTodo() {
             onChange={(e) => setDescription(e.target.value)}
             as="textarea"
             rows={3}
-            placeholder="1. Create amazing project\n2. Apply to Google & Netflix\n3. Crush interview"
+            placeholder={`1. Create amazing project\n2. Apply to Google & Netflix\n3. Crush interview`}
           />
         </Form.Group>
 
